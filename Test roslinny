@@ -1,0 +1,71 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Bukiety2
+{
+	class Program
+	{
+		static void Main(string[] args)
+		{
+			// Inicjalizacja zmiennych
+			int totalPoints = 0;
+
+			// Pytania i odpowiedzi
+			string[] questions = new string[]
+			{
+				"Pytanie 1: Co jest stolicą Francji?",
+				"Pytanie 2: Która planeta jest najbliżej Słońca?",
+                // Dodaj pozostałe pytania tutaj
+            };
+
+			string[][] answers = new string[][]
+			{
+				new string[] { "A) Paryż", "B) Londyn", "C) Madryt" },
+				new string[] { "A) Wenus", "B) Mars", "C) Merkury" },
+                // Dodaj pozostałe odpowiedzi tutaj
+            };
+
+			// Zadawanie pytań
+			for (int i = 0; i < questions.Length; i++)
+			{
+				Console.WriteLine(questions[i]);
+				Console.WriteLine($"{answers[i][0]} {answers[i][1]} {answers[i][2]}");
+				string userAnswer = Console.ReadLine().ToUpper();
+
+				switch (userAnswer)
+				{
+					case "A":
+						totalPoints += 1;
+						break;
+					case "B":
+						totalPoints += 5;
+						break;
+					case "C":
+						totalPoints += 10;
+						break;
+					default:
+						--i;
+						Console.WriteLine("Nieprawidłowy wybór. Wybierz A, B lub C.");
+						break;
+				}
+			}
+
+			// Określenie wyniku
+			string result;
+			if (totalPoints >= 10 && totalPoints <= 25)
+				result = "Jesteś bukiet A.";
+			else if (totalPoints >= 26 && totalPoints <= 75)
+				result = "Jesteś bukiet B.";
+			else
+				result = "Jesteś bukiet C.";
+
+			// Wyświetlenie wyniku
+			Console.WriteLine($"Twój wynik: {totalPoints} punktów.");
+			Console.WriteLine(result);
+			Console.ReadLine();
+		}
+	}
+}
